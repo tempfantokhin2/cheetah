@@ -8,24 +8,22 @@
 <body>
 <div class="container">
 <h1>Cheetah & Gazelles Management System</h1>
-<p th:text="'Cheetah Last Updated: ' + ${cheetahUpdateTime}"></p>
 <div class="cheetah-info">
     <h2>Cheetah Information</h2>
+    <p th:text="'Cheetah Last Updated: ' + ${cheetahUpdateTime}"></p>
     <p>Name: <span th:text="${currentCheetahName}"></span></p>
     <p>Speed: <span th:text="${currentCheetahSpeed}"></span> km/h</p>
     <p>Age: <span th:text="${currentCheetahAge}"></span> years old</p>
 </div>
-<p th:text="'Gazelles Last Updated: ' + ${gazellesUpdateTime}"></p>
+    <form th:action="@{/cheetah/hunt}" method="post">
+        <button type="submit">Hunt Slowest Gazelle</button>
+    </form>
+
 <h2>Gazelles List:</h2>
-    <div class="button-container">
         <form th:action="@{/cheetah/clear-gazelles}" method="post">
             <button type="submit">Clear Gazelles List</button>
         </form>
-        <br>
-        <form th:action="@{/cheetah/hunt}" method="post">
-            <button type="submit">Hunt Slowest Gazelle</button>
-        </form>
-    </div>
+<p th:text="'Gazelles Last Updated: ' + ${gazellesUpdateTime}"></p>
 <table id="gazellesList">
     <thead>
     <tr>
@@ -41,6 +39,7 @@
     </tbody>
 </table>
     <hr>
+    <div class="button-container">
     <button onclick="toggleCheetahForm()">Update Cheetah</button>
     <form id="cheetah_form" th:action="@{/cheetah/update-cheetah}" method="post" style="display:none;">
         <label for="cheetahName">Cheetah Name:</label>
@@ -51,8 +50,6 @@
         <input type="number" id="cheetahAge" name="age" required><br><br>
         <button type="submit">Update Cheetah</button>
     </form>
-    <br>
-    <br>
     <button onclick="toggleAddGazelleForm()">Add Gazelle</button>
     <form id="addgazelle_form" th:action="@{/cheetah/add-gazelle}" method="post" style="display:none;">
         <label for="gazelleName">Gazelle Name:</label>
@@ -61,6 +58,7 @@
         <input type="number" id="gazelleSpeed" name="speed" required><br><br>
         <button type="submit">Add Gazelle</button>
     </form>
+    </div>
 
 </div>
 <script>

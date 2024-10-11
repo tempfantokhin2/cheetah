@@ -47,6 +47,16 @@ public class CheetahGazelleController {
         List<Gazelle> gazelles = readGazelles();
         int result = cheetah.doHunt(gazelles);
 
+        switch (result) {
+            case 1:
+                saveGazelles(gazelles);
+                break;
+            case 0:
+                break;
+            case -1:
+                break;
+        }
+
         loadGazellesData(model);
         return "redirect:/cheetah";
     }
