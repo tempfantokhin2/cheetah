@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -29,8 +30,8 @@ public class CheetahGazelleController {
         long gazellesUpdateTime = getLastUpdatedTime(GAZELLES_FILE);
 
         model.addAttribute("lastUpdated", LocalDateTime.now());
-        model.addAttribute("cheetahUpdateTime", cheetahUpdateTime);
-        model.addAttribute("gazellesUpdateTime", gazellesUpdateTime);
+        model.addAttribute("cheetahUpdateTime", new Date(cheetahUpdateTime).toString());
+        model.addAttribute("gazellesUpdateTime", new Date(gazellesUpdateTime).toString());
 
         // Read current cheetah values
         Cheetah currentCheetah = readCheetah();
@@ -49,11 +50,14 @@ public class CheetahGazelleController {
 
         switch (result) {
             case 1:
+                //todo
                 saveGazelles(gazelles);
                 break;
             case 0:
+                //
                 break;
             case -1:
+                //
                 break;
         }
 
